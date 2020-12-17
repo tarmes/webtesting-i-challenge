@@ -1,22 +1,41 @@
-module.exports = {
-  success,
-  fail,
-  repair,
-  get,
-};
 
-function success(item) {
-  return { ...item };
+class Enhancer {
+  constructor(name, enhancement, durability) {
+    this.name = name
+    this.enhancement = enhancement
+    this.durability = durability
+  }
+  success(item) {
+    if ( this.enhancement < 20 ) {
+      this.enhancement += 1
+    }    
+    return { ...item };
+  }
+  
+  fail(item) {
+    if ( this.enhancement > 16 && this.enhancement >= 15 ) {
+      this.enhancement -= 1
+      this.durability -= 10
+    } else if ( this.enhancement >= 15 ) {
+      this.durability -= 10
+    } else {
+      this.durability -= 5
+    }
+    return { ...item };
+  }
+  
+  repair(item) {
+    this.durability = 100
+    return { ...item };
+  }
+  
+  get(item) {
+    return { ...item };
+  }
 }
 
-function fail(item) {
-  return { ...item };
-}
-
-function repair(item) {
-  return { ...item };
-}
-
-function get(item) {
-  return { ...item };
-}
+module.exports = Enhancer;
+// - a `repair(item)` method that accepts an `item` object and **returns a new item** with the durability restored to 100. This method is the simplest of the three and would be a **good starting point** on this project.
+// - a `success(item)` method that accepts an `item` object and **returns a new item** object modified according to the rules defined by the client for enhancement success.
+// - a `fail(item)` method that accepts an `item` object and **returns a new item** object modified according to the rules defined by the client for enhancement failure.
+// - a `get()` method for use when working on the stretch problem.
