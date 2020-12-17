@@ -13,6 +13,14 @@ class Enhancer {
   }
   
   fail(item) {
+    if ( this.enhancement > 16 && this.enhancement >= 15 ) {
+      this.enhancement -= 1
+      this.durability -= 10
+    } else if ( this.enhancement >= 15 ) {
+      this.durability -= 10
+    } else {
+      this.durability -= 5
+    }
     return { ...item };
   }
   
