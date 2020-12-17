@@ -1,11 +1,14 @@
 
 class Enhancer {
-  constructor(name) {
+  constructor(name, enhancement, durability) {
     this.name = name
-    this.enhancement = 15
-    this.durability = 45
+    this.enhancement = enhancement
+    this.durability = durability
   }
   success(item) {
+    if ( this.enhancement < 20 ) {
+      this.enhancement += 1
+    }    
     return { ...item };
   }
   
@@ -14,6 +17,7 @@ class Enhancer {
   }
   
   repair(item) {
+    this.durability = 100
     return { ...item };
   }
   
